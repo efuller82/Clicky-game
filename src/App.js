@@ -15,7 +15,21 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <NavBar>Clicky Game!</NavBar>
+        <NavBar>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-4'>
+                <h3>Clicky Game</h3>
+              </div>
+              <div className='col-4'>
+                Click an image to begin!
+            </div>
+              <div className='col-4'>
+                <span id='score'>Score: </span>
+              </div>
+            </div>
+          </div>
+        </NavBar>
         <Banner>
           <h1>Clicky Game!</h1>
           <p>Don't click the same image more than once!</p>
