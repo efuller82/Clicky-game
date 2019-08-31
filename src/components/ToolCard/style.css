@@ -1,10 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
 .img-card {
     width: 200px;
     height: 200px;
+    margin: 10px;
+    padding: 3px;
+    position: relative;
+    overflow: hidden;
 }
 
 img {
     width: 200px;
     height: 200px;
+    padding: 3px;
 }
 
+.img-card img {
+    transition: transform .2s;
+}
+
+.img-card:hover {
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}

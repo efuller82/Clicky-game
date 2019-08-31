@@ -1,4 +1,9 @@
 .navbar {
     width: 100%;
     margin-bottom: 5%;
+    background-image: url('Snakeskin-Background.png');
+    color: white;
+    height: 75px;
+    position: fixed;
+    z-index: 1;
 }

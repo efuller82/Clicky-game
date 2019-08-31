@@ -19,6 +19,7 @@ class App extends Component {
           <ToolCard
             key={toolob.id}
             image={toolob.image}
+            isClicked={toolob.isClicked}
           />
         ))}
       </Wrapper>

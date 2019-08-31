@@ -5,9 +5,14 @@ function ToolCard(props) {
     return (
         <div className='card img-card'>
             <div className='img-container'>
-                <img alt={props.id} src={props.image} />
+                <img
+                    alt={props.id}
+                    src={props.image}
+                    onClick={() => props.clickStatus()}
+                />
             </div>
         </div>
+
     );
 }
 
