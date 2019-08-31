@@ -6,11 +6,26 @@ import toolobs from './toolobs.json'
 import ToolCard from './components/ToolCard';
 import Banner from './components/Banner';
 
+// shuffle 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+
 class App extends Component {
   state = {
     toolobs
   };
 
+
+  handleShuffle = () => {
+    let shuffled = shuffle(toolobs);
+    this.setState({ tooloobs: shuffled })
+  };
 
   render() {
     return (
@@ -25,7 +40,7 @@ class App extends Component {
                 Click an image to begin!
             </div>
               <div className='col-4'>
-                <span id='score'>Score: </span>
+                <span id='score'>Score: 9 | High Score: 0</span>
               </div>
             </div>
           </div>
@@ -36,6 +51,8 @@ class App extends Component {
         </Banner>
         {this.state.toolobs.map(toolob => (
           <ToolCard
+            handleShuffle={this.handleShuffle}
+            id={toolob.id}
             key={toolob.id}
             image={toolob.image}
             isClicked={toolob.isClicked}
