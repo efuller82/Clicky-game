@@ -1,11 +1,9 @@
 .wrapper {
-    padding-top: 50px;
     background: #ECEFF1;
     height: 100%;
     display: flex;
     flex-flow: row wrap;
-    padding: 20px;
     justify-content: space-around;
     align-content: flex-start;
     overflow: auto;
-  }
+    background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);  }
