@@ -15,16 +15,60 @@ function shuffle(array) {
   return array;
 }
 
+//! function for changing isClicked value here??
+
 
 class App extends Component {
   state = {
     toolobs
+    //score
+    //topScore
   };
 
+  handleCorrectGuess = (newData) => {
+    // declare new top score, add to score
+
+    // set.state; //call shuffle on toolobs(key)
+    console.log("correct guess!")
+  }
+
+  handleIncorrectGuess = (newData) => {
+    // set score to 0
+    this.setState({
+      toolobs: this.resetData(newData),
+      score: 0
+    })
+    // handle reset; can be done on set.state
+
+    console.log('incorrect guess!');
+  }
+
+  // reset data function; use .map; sets every item to false; then run shuffle
+  resetData = (newData) => {
+    const resetData = newData.map(item => ({ ...item, isClicked: false }));
+    return this.handleShuffle(resetData);
+  }
+
+  //! function to set state after isClicked is toggled
+  // pass id of clicked item (toolcard)this.id
+  handleIsClicked = (id) => {
+    // evaluate click 
+    let checkCorrectly = false;
+    console.log(id);
+
+
+
+
+    // switchcase to carry out guess correct or false
+
+    checkCorrectly
+      ? this.handleCorrectGuess(newToolObs)
+      : this.handleIncorrectGuess(newToolObs)
+  }
 
   handleShuffle = () => {
     let shuffled = shuffle(toolobs);
-    this.setState({ tooloobs: shuffled })
+    this.setState({ toolobs: shuffled })
   };
 
   render() {
@@ -40,7 +84,7 @@ class App extends Component {
                 Click an image to begin!
             </div>
               <div className='col-4'>
-                <span id='score'>Score: 9 | High Score: 0</span>
+                <span id='score'>Score: 0 | High Score: 0</span>
               </div>
             </div>
           </div>
