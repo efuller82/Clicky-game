@@ -15,31 +15,54 @@ function shuffle(array) {
   return array;
 }
 
-//! function for changing isClicked value here??
-
 
 class App extends Component {
   state = {
-    toolobs
-    //score
-    //topScore
+    toolobs,
+    score: 0,
+    topScore: 0,
+    isClicked: false
   };
 
-  handleCorrectGuess = (newData) => {
+  handleShuffle = () => {
+    let shuffled = shuffle(toolobs);
+    this.setState({ toolobs: shuffled })
+  };
+
+  //! function to set state after isClicked is toggled
+  // pass id of clicked item (toolcard)this.id
+  handleIsClicked = (id) => {
+    // evaluate click 
+    console.log(id);
+    const checkTruth = this.state.toolobs[id - 1].isClicked;
+    console.log(checkTruth);
+    if (checkTruth === false) {
+      this.handleCorrectGuess(id);
+    } else {
+      // this.handleIncorrectGuess();
+    }
+  }
+
+  handleCorrectGuess = (id, newData) => {
     // declare new top score, add to score
+    // let score = 0;
+    let makeTrue = this.state.toolobs[id - 1].isClicked;
+    makeTrue = true;
+    console.log(makeTrue);
 
     // set.state; //call shuffle on toolobs(key)
-    console.log("correct guess!")
+    this.setState({ toolobs: newData, id, isClicked: true })
+    this.handleShuffle();
   }
 
   handleIncorrectGuess = (newData) => {
     // set score to 0
     this.setState({
       toolobs: this.resetData(newData),
-      score: 0
+      score: 0,
     })
     // handle reset; can be done on set.state
-
+    this.handleShuffle();
     console.log('incorrect guess!');
   }
 
@@ -49,27 +72,7 @@ class App extends Component {
     return this.handleShuffle(resetData);
   }
 
-  //! function to set state after isClicked is toggled
-  // pass id of clicked item (toolcard)this.id
-  handleIsClicked = (id) => {
-    // evaluate click 
-    let checkCorrectly = false;
-    console.log(id);
 
-
-
-
-    // switchcase to carry out guess correct or false
-
-    checkCorrectly
-      ? this.handleCorrectGuess(newToolObs)
-      : this.handleIncorrectGuess(newToolObs)
-  }
-
-  handleShuffle = () => {
-    let shuffled = shuffle(toolobs);
-    this.setState({ toolobs: shuffled })
-  };
 
   render() {
     return (
@@ -95,6 +98,7 @@ class App extends Component {
         </Banner>
         {this.state.toolobs.map(toolob => (
           <ToolCard
+            handleIsClicked={this.handleIsClicked}
             handleShuffle={this.handleShuffle}
             id={toolob.id}
             key={toolob.id}

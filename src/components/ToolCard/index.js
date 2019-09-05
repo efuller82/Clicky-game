@@ -8,8 +8,9 @@ function ToolCard(props) {
                 <img
                     alt={props.id}
                     src={props.image}
-                    onClick={() => props.handleShuffle(props.id)} className='shuffle'
-                //! something for handleIsClicked here??
+                    //! something for handleIsClicked here??
+                    onClick={() => props.handleIsClicked(props.id)} className='shuffle'
+
                 />
             </div>
         </div>
