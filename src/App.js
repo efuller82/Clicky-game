@@ -20,7 +20,7 @@ class App extends Component {
   state = {
     toolobs,
     score: 0,
-    topScore: 0,
+    highScore: 0,
   };
 
   handleShuffle = () => {
@@ -50,20 +50,22 @@ class App extends Component {
     // declare new top score, add to score
     // let score = 0;
     console.log('correct');
-    this.handleShuffle(); //No shuffle since it's correct -Calvin
+    this.handleShuffle();
 
     //! Getting a newscore of 1 each time
-    // let newScore = this.state.score + 1;
-
-    // console.log(newScore);
-    // set.state; //call shuffle on toolobs(key)
+    let newScore = this.state.score + 1;
+    this.setState({ score: this.state.score + 1 })
+    console.log(newScore);
 
   }
 
   handleIncorrectGuess = () => {
-    // set score to 0
     // handle reset; can be done on set.state
     console.log('incorrect');
+    // create new high score
+    if (this.state.score > this.state.highScore) {
+      this.setState({ highScore: this.state.score })
+    }
     // reset data
     this.resetData();
     // shuffle data
@@ -77,7 +79,7 @@ class App extends Component {
       item.isClicked = false;
       return item
     });
-    this.setState({ toolobs: [...resetData] });
+    this.setState({ toolobs: [...resetData], score: 0 });
   }
 
   render() {
@@ -93,7 +95,7 @@ class App extends Component {
                 Click an image to begin!
             </div>
               <div className='col-4'>
-                <span id='score'>Score: 0 | High Score: 0</span>
+                <span id='score'>Score: {this.state.score} | High Score: {this.state.highScore}</span>
               </div>
             </div>
           </div>
