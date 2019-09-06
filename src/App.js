@@ -92,8 +92,8 @@ class App extends Component {
                 <h3>Clicky Game</h3>
               </div>
               <div className='col-4'>
-                Click an image to begin!
-            </div>
+                <h4>Click an image to begin!</h4>
+              </div>
               <div className='col-4'>
                 <span id='score'>Score: {this.state.score} | High Score: {this.state.highScore}</span>
               </div>
@@ -102,7 +102,7 @@ class App extends Component {
         </NavBar>
         <Banner>
           <h1>Clicky Game!</h1>
-          <p>Don't click the same image more than once!</p>
+          <h3>Don't click the same image more than once!</h3>
         </Banner>
         {this.state.toolobs.map(toolob => (
           <ToolCard
