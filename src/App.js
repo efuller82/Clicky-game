@@ -24,7 +24,7 @@ class App extends Component {
   };
 
   handleShuffle = () => {
-    let shuffled = shuffle(toolobs);
+    let shuffled = shuffle(this.state.toolobs);
     this.setState({ toolobs: shuffled })
   };
 
@@ -36,24 +36,21 @@ class App extends Component {
         console.log(id);
         console.log(this.state.toolobs[i].id);
         if (newToolObs[i].isClicked === true) {
-          this.handleIncorrectGuess();
-          return;
+          return this.handleIncorrectGuess();
         } else {
-          this.handleCorrectGuess(id);
           newToolObs[i].isClicked = true;
-          return;
+          this.setState({ toolobs: [...newToolObs] })
+          return this.handleCorrectGuess();
         }
       }
-      console.log(newToolObs[i]);
     }
-    this.setState({ toolobs: [...newToolObs] })
   }
 
   handleCorrectGuess = () => {
     // declare new top score, add to score
     // let score = 0;
     console.log('correct');
-    this.handleShuffle();
+    this.handleShuffle(); //No shuffle since it's correct -Calvin
 
     //! Getting a newscore of 1 each time
     // let newScore = this.state.score + 1;
@@ -67,17 +64,21 @@ class App extends Component {
     // set score to 0
     // handle reset; can be done on set.state
     console.log('incorrect');
+    // reset data
+    this.resetData();
+    // shuffle data
     this.handleShuffle();
     alert('you lose');
   }
 
   // reset data function; use .map; sets every item to false; then run shuffle
-  resetData = (newData) => {
-    const resetData = newData.map(item => ({ ...item, isClicked: false }));
-    return this.handleShuffle(resetData);
+  resetData = () => {
+    const resetData = this.state.toolobs.map(item => {
+      item.isClicked = false;
+      return item
+    });
+    this.setState({ toolobs: [...resetData] });
   }
-
-
 
   render() {
     return (
