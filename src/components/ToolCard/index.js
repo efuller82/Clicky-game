@@ -17,6 +17,4 @@ function ToolCard(props) {
     );
 }
 
-
-
 export default ToolCard;

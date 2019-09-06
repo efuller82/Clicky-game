@@ -30,21 +30,23 @@ class App extends Component {
 
   // pass id of clicked item (toolcard)this.id
   handleIsClicked = (id) => {
+    let newToolObs = this.state.toolobs;
     for (let i = 0; i < this.state.toolobs.length; i++) {
-      if (id === toolobs[i].id) {
+      if (id === this.state.toolobs[i].id) {
         console.log(id);
-        console.log(toolobs[i].id);
-        let newToolObs = this.state.toolobs;
+        console.log(this.state.toolobs[i].id);
         if (newToolObs[i].isClicked === true) {
           this.handleIncorrectGuess();
+          return;
         } else {
-          this.handleCorrectGuess();
+          this.handleCorrectGuess(id);
           newToolObs[i].isClicked = true;
-          this.setState({ toolobs: [...newToolObs] })
-          console.log(newToolObs[i]);
+          return;
         }
       }
+      console.log(newToolObs[i]);
     }
+    this.setState({ toolobs: [...newToolObs] })
   }
 
   handleCorrectGuess = () => {
