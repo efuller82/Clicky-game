@@ -9,8 +9,7 @@ function ToolCard(props) {
                     alt={props.id}
                     src={props.image}
                     //! something for handleIsClicked here??
-                    onClick={() => props.handleIsClicked(props.id)} className='shuffle'
-
+                    onClick={() => props.handleIsClicked(props.id)}
                 />
             </div>
         </div>

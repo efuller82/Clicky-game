@@ -21,7 +21,6 @@ class App extends Component {
     toolobs,
     score: 0,
     topScore: 0,
-    isClicked: false
   };
 
   handleShuffle = () => {
@@ -29,41 +28,45 @@ class App extends Component {
     this.setState({ toolobs: shuffled })
   };
 
-  //! function to set state after isClicked is toggled
   // pass id of clicked item (toolcard)this.id
   handleIsClicked = (id) => {
-    // evaluate click 
-    console.log(id);
-    const checkTruth = this.state.toolobs[id - 1].isClicked;
-    console.log(checkTruth);
-    if (checkTruth === false) {
-      this.handleCorrectGuess(id);
-    } else {
-      // this.handleIncorrectGuess();
+    for (let i = 0; i < this.state.toolobs.length; i++) {
+      if (id === toolobs[i].id) {
+        console.log(id);
+        console.log(toolobs[i].id);
+        let newToolObs = this.state.toolobs;
+        if (newToolObs[i].isClicked === true) {
+          this.handleIncorrectGuess();
+        } else {
+          this.handleCorrectGuess();
+          newToolObs[i].isClicked = true;
+          this.setState({ toolobs: [...newToolObs] })
+          console.log(newToolObs[i]);
+        }
+      }
     }
   }
 
-  handleCorrectGuess = (id, newData) => {
+  handleCorrectGuess = () => {
     // declare new top score, add to score
     // let score = 0;
-    let makeTrue = this.state.toolobs[id - 1].isClicked;
-    makeTrue = true;
-    console.log(makeTrue);
-
-    // set.state; //call shuffle on toolobs(key)
-    this.setState({ toolobs: newData, id, isClicked: true })
+    console.log('correct');
     this.handleShuffle();
+
+    //! Getting a newscore of 1 each time
+    // let newScore = this.state.score + 1;
+
+    // console.log(newScore);
+    // set.state; //call shuffle on toolobs(key)
+
   }
 
-  handleIncorrectGuess = (newData) => {
+  handleIncorrectGuess = () => {
     // set score to 0
-    this.setState({
-      toolobs: this.resetData(newData),
-      score: 0,
-    })
     // handle reset; can be done on set.state
+    console.log('incorrect');
     this.handleShuffle();
-    console.log('incorrect guess!');
+    alert('you lose');
   }
 
   // reset data function; use .map; sets every item to false; then run shuffle
