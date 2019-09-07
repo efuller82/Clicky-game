@@ -5,6 +5,7 @@ import Wrapper from './components/Wrapper';
 import toolobs from './toolobs.json'
 import ToolCard from './components/ToolCard';
 import Banner from './components/Banner';
+import Footer from './components/Footer';
 
 // shuffle 
 function shuffle(array) {
@@ -104,6 +105,7 @@ class App extends Component {
           <h1>Clicky Game!</h1>
           <h3>Don't click the same image more than once!</h3>
         </Banner>
+
         {this.state.toolobs.map(toolob => (
           <ToolCard
             handleIsClicked={this.handleIsClicked}
@@ -114,8 +116,12 @@ class App extends Component {
             isClicked={toolob.isClicked}
           />
         ))}
-      </Wrapper>
 
+        <Footer>
+
+        </Footer>
+
+      </Wrapper>
     )
   };
 }
